@@ -1,0 +1,23 @@
+import tkinter as tk
+from tkinter import messagebox
+
+def aksi_sapa():
+    nama = entry_nama.get().strip()
+    if nama:
+        lbl_sapaan.config(text=f"Halo, {nama}! Selamat belajar GUI")
+    else:
+        messagebox.showwarning("Peringatan", "Kolom nama tidak boleh kosong!")
+    
+    root = tk.Tk()
+    root.title("Lab 1 - Pengenalan Tkinter")
+    root.geometry("350x150")
+    
+    lbl_sapaan = tk.Label(root, text="Masukkan nama Anda di bawah ini:", font=("Arial",11))
+    lbl_sapaan.pack(pady=10)
+    
+    entry_nama = tk.Entry(root, width=30)
+    entry_nama.pack(pady=5)
+    
+    btn_sapa = tk.Button(root, text="Klik Saya", command=aksi_sapa, bg="lightblue")
+    
+    root.mainloop()
