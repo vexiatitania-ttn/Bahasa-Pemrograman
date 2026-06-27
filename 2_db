@@ -1,0 +1,18 @@
+import sqlite3
+
+def inisialisasi_db():
+  with sqlite3.connect("riset.db") as conn:
+    cursor = conn.cursor()
+
+    cursor.execute("""
+      CREATE TABLE IF NOT EXISTS sampel (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nama_sampel TEXT NOT NULL,
+        status TEXT NOT NULL
+      )
+    """)
+    print("[SUKSES] Databe=ase 'riset.db' dan tabel 'sampel' siap digunakan.")
+
+
+if __name__ == "__main__":
+  inisialisasi_db()
