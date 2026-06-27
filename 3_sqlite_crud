@@ -1,0 +1,36 @@
+import sqlite3
+
+DATABASE = "riset.db"
+
+def create_sampel(nama, status):
+    with sqlite3.connect(DATABASE) as conn:
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO sampel (nama_sampel, status) VALUES (?, ?)", (nama, status))
+         print(f"-> Berhasil menyimpan sampel: {nama}")
+
+def read_semua_sampel():
+    print("\n=== DAFTAR ISI DATABASE ===")
+    with sqlite3.connect(DATABASE) as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM sampel")
+        rows = cursor.fetchall()
+        for r in rows:
+            print(f"ID: {r[0]} | Nama Sampel: {r[]:<15} | Status: {r[2]}")
+    print("===========================\n")
+
+update_status_sampel(id_sampel, status_baru):
+    with sqlite3.connect(DATABASE) as conn:
+        cursor = conn.cursor()
+        cursor.execute("UPDATE sampel SET status = ? WHERE id = ?", (status_baru, id_sampel))
+        print(f"-> Status Sampel ID {id_sampel} diperbarui menjadi: {status_baru}")
+
+__name__ == "__main__":
+    create_sampel("Spesimen Alfa", "Selesai")
+    create_sampel("Spesimen Beta", "Proses")
+    read_semua_sampel()
+
+    update_status_sampel(2, "Selesai")
+    read_semua_sampel()
+
+    delete_sampel(1)
+    read_semua_sampel()
